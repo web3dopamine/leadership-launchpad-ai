@@ -1,0 +1,575 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Platform Wireframes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+:root{
+  --ink:#070B12; --ink-2:#0D141F; --line:#1E2A3B;
+  --cream:#F5F1E6; --muted:#8A97A8; --muted-dim:#5E6B7C;
+  --gold:#C89B4A; --signal:#5FB3B0;
+  /* wireframe screen palette (light, so screens read as screens) */
+  --w-bg:#EEF1F5; --w-surf:#FFFFFF; --w-line:#D6DCE4; --w-line-2:#E8ECF1;
+  --w-text:#16202C; --w-mut:#6B7684; --w-dim:#98A2AE;
+  --w-navy:#16283F; --w-gold:#B98A33; --w-teal:#2E8280;
+  --serif:"Playfair Display",Georgia,serif;
+  --sans:"IBM Plex Sans",-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{background:var(--ink);color:var(--cream);font-family:var(--sans);font-size:15px;line-height:1.6;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+
+.page{width:297mm;height:210mm;padding:14mm 16mm;position:relative;overflow:hidden;background:var(--ink);display:flex;flex-direction:column;}
+.page + .page{border-top:1px solid var(--line);}
+
+.eyebrow{font-family:var(--mono);font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin:0;}
+.eyebrow.sys{color:var(--signal);}
+h1{font-family:var(--serif);font-weight:700;font-size:3.4rem;line-height:1.05;margin:0;letter-spacing:-.015em;}
+h2{font-family:var(--serif);font-weight:700;font-size:1.72rem;line-height:1.12;margin:6px 0 0;letter-spacing:-.01em;}
+.note{color:var(--muted);font-size:.83rem;margin:8px 0 0;max-width:88ch;line-height:1.55;}
+
+.phead{flex:none;margin-bottom:9mm;}
+.pbody{flex:1;display:grid;grid-template-columns:1fr 62mm;gap:9mm;min-height:0;}
+.pbody.wide{grid-template-columns:1fr;}
+.pfoot{flex:none;display:flex;justify-content:space-between;font-family:var(--mono);font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted-dim);padding-top:5mm;border-top:1px solid var(--line);margin-top:6mm;}
+
+/* callout list */
+.callouts{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:11px;}
+.callouts li{display:flex;gap:9px;font-size:.76rem;color:var(--muted);line-height:1.45;}
+.callouts .n{flex:none;width:17px;height:17px;border-radius:50%;border:1px solid var(--gold);color:var(--gold);
+  font-family:var(--mono);font-size:.58rem;display:flex;align-items:center;justify-content:center;margin-top:1px;}
+.callouts b{color:var(--cream);font-weight:500;display:block;font-size:.79rem;}
+
+/* ---------- wireframe screen chrome ---------- */
+.screen{background:var(--w-bg);border:1px solid var(--w-line);border-radius:4px;overflow:hidden;
+  display:flex;flex-direction:column;height:100%;color:var(--w-text);font-size:9.5px;line-height:1.45;}
+.chrome{background:#DFE4EA;border-bottom:1px solid var(--w-line);padding:5px 9px;display:flex;align-items:center;gap:6px;flex:none;}
+.dot{width:6px;height:6px;border-radius:50%;background:#BFC7D1;}
+.url{flex:1;background:#fff;border:1px solid var(--w-line);border-radius:3px;padding:2px 7px;
+  font-family:var(--mono);font-size:7.5px;color:var(--w-dim);margin-left:5px;}
+.app{flex:1;display:flex;min-height:0;}
+
+/* left nav rail */
+.rail{width:112px;background:var(--w-navy);color:#DCE3EC;flex:none;padding:10px 9px;display:flex;flex-direction:column;gap:4px;}
+.rail .brand{font-family:var(--serif);font-size:11px;line-height:1.1;color:#fff;margin-bottom:9px;}
+.rail .brand i{display:block;font-style:normal;color:var(--gold);font-size:9.5px;}
+.rail a{font-size:8.5px;padding:4px 6px;border-radius:3px;color:#A9B6C6;}
+.rail a.on{background:rgba(255,255,255,.10);color:#fff;}
+.rail .sp{flex:1;}
+.rail .who{border-top:1px solid rgba(255,255,255,.13);padding-top:7px;font-size:7.5px;color:#8C9AAB;}
+
+/* main column */
+.main{flex:1;padding:11px 13px;display:flex;flex-direction:column;gap:9px;min-width:0;overflow:hidden;}
+.topbar{display:flex;justify-content:space-between;align-items:flex-start;gap:9px;flex:none;}
+.h{font-family:var(--serif);font-size:14px;font-weight:700;line-height:1.15;}
+.sub{color:var(--w-mut);font-size:8.5px;}
+.pill{font-family:var(--mono);font-size:7px;letter-spacing:.09em;text-transform:uppercase;
+  border:1px solid var(--w-line);background:#fff;border-radius:99px;padding:3px 8px;color:var(--w-mut);}
+.pill.tealp{border-color:#BCDCDA;color:var(--w-teal);background:#F2F9F9;}
+.pill.goldp{border-color:#E4D2AC;color:var(--w-gold);background:#FBF6EC;}
+
+.card{background:var(--w-surf);border:1px solid var(--w-line);border-radius:3px;padding:9px 10px;}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+.lbl{font-family:var(--mono);font-size:6.8px;letter-spacing:.16em;text-transform:uppercase;color:var(--w-dim);}
+.val{font-family:var(--serif);font-size:17px;font-weight:700;line-height:1;margin-top:3px;}
+.val small{font-size:8px;font-family:var(--sans);font-weight:400;color:var(--w-mut);margin-left:3px;}
+
+/* skeleton lines */
+.sk{height:5px;border-radius:2px;background:var(--w-line-2);}
+.sk.d{background:#DFE5EC;}
+.sk.w80{width:80%} .sk.w60{width:60%} .sk.w45{width:45%} .sk.w95{width:95%} .sk.w30{width:30%}
+.stack{display:flex;flex-direction:column;gap:4px;}
+
+/* meters */
+.meter{height:5px;background:var(--w-line-2);border-radius:99px;overflow:hidden;}
+.meter i{display:block;height:100%;background:var(--w-teal);border-radius:99px;}
+.meter.g i{background:var(--w-gold);}
+.mrow{display:flex;flex-direction:column;gap:3px;}
+.mrow .t{display:flex;justify-content:space-between;font-size:8px;}
+.mrow .t span:last-child{font-family:var(--mono);font-size:7.5px;color:var(--w-mut);}
+
+/* chat */
+.chat{flex:1;display:flex;flex-direction:column;gap:6px;overflow:hidden;}
+.msg{max-width:74%;padding:7px 9px;border-radius:8px;font-size:8.5px;line-height:1.5;}
+.msg.ai{background:#fff;border:1px solid var(--w-line);border-top-left-radius:2px;}
+.msg.me{background:var(--w-navy);color:#E7EDF4;align-self:flex-end;border-top-right-radius:2px;}
+.msg .agent{font-family:var(--mono);font-size:6.8px;letter-spacing:.14em;text-transform:uppercase;color:var(--w-teal);display:block;margin-bottom:3px;}
+.composer{flex:none;background:#fff;border:1px solid var(--w-line);border-radius:4px;padding:7px 9px;display:flex;align-items:center;gap:7px;}
+.composer .ph{flex:1;color:var(--w-dim);font-size:8.5px;}
+.btn{font-family:var(--mono);font-size:7px;letter-spacing:.1em;text-transform:uppercase;background:var(--w-gold);color:#fff;border-radius:3px;padding:4px 9px;}
+.btn.ghost{background:transparent;border:1px solid var(--w-line);color:var(--w-mut);}
+.mic{width:19px;height:19px;border-radius:50%;background:var(--w-teal);flex:none;}
+
+/* option rows */
+.opt{display:flex;align-items:center;gap:7px;background:#fff;border:1px solid var(--w-line);border-radius:3px;padding:7px 9px;font-size:8.5px;}
+.opt .rd{width:9px;height:9px;border-radius:50%;border:1.5px solid var(--w-dim);flex:none;}
+.opt.sel{border-color:var(--w-gold);background:#FBF6EC;}
+.opt.sel .rd{border-color:var(--w-gold);background:var(--w-gold);}
+
+/* bar chart */
+.bars{display:flex;align-items:flex-end;gap:6px;height:52px;}
+.bars div{flex:1;background:var(--w-teal);border-radius:2px 2px 0 0;opacity:.85;}
+.axis{display:flex;gap:6px;margin-top:4px;}
+.axis span{flex:1;text-align:center;font-family:var(--mono);font-size:6.5px;color:var(--w-dim);}
+
+/* heat grid */
+.heat{display:grid;grid-template-columns:52px repeat(6,1fr);gap:3px;font-size:7px;}
+.heat .hd{font-family:var(--mono);font-size:6.2px;color:var(--w-dim);text-transform:uppercase;letter-spacing:.06em;display:flex;align-items:flex-end;}
+.heat .rw{font-size:7.5px;color:var(--w-mut);display:flex;align-items:center;}
+.heat .c{height:15px;border-radius:2px;}
+
+/* journey + flow diagrams */
+svg.dia{width:100%;height:100%;display:block;}
+svg.dia text{font-family:var(--mono);}
+.d-role{font-size:8.4px;letter-spacing:.13em;text-transform:uppercase;}
+.d-desc{font-size:7.4px;}
+.d-note{font-size:7px;letter-spacing:.04em;}
+
+/* cover */
+.cover{justify-content:center;}
+.cover .mark{display:flex;align-items:center;gap:11px;margin-bottom:auto;}
+.cover .mark span{font-family:var(--serif);font-size:15px;line-height:1.15;}
+.cover .mark span b{display:block;font-weight:700;}
+.cover .mark span i{display:block;font-style:normal;color:var(--gold);font-weight:500;}
+.cover .mid{margin-block:auto;}
+.cover h1 .g{color:var(--gold);display:block;}
+.cover .meta{display:flex;flex-wrap:wrap;gap:7px;margin-top:22px;}
+.chip{font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);
+  border:1px solid var(--line);border-radius:99px;padding:5px 11px;background:var(--ink-2);}
+
+@page{size:297mm 210mm;margin:0;}
+@media print{ .page{break-after:page;page-break-after:always;} .page:last-child{break-after:auto;} }
+</style>
+</head>
+<body>
+
+<!-- 1 COVER -->
+<section class="page cover">
+  <div class="mark">
+    <svg width="30" height="30" viewBox="0 0 34 34"><circle cx="17" cy="17" r="16" fill="none" stroke="#C89B4A" stroke-width="1.2"/><path d="M17 7c3.6 2.9 5.2 7 4.6 11.4l-4.6 4.4-4.6-4.4C11.8 14 13.4 9.9 17 7Z" fill="#F5F1E6"/><circle cx="17" cy="14.4" r="2" fill="#070B12"/><path d="M13.6 23.6 17 27l3.4-3.4" fill="none" stroke="#C89B4A" stroke-width="1.3"/></svg>
+    <span><b>Leadership</b><i>Launchpad</i></span>
+  </div>
+  <div class="mid">
+    <p class="eyebrow sys">AI Agent-Based Expert Training &amp; Coaching Platform</p>
+    <h1 style="margin-top:16px;">Solution wireframes<span class="g">and process flow</span></h1>
+    <p class="note" style="font-size:.95rem;max-width:74ch;margin-top:18px;">Indicative user interface mock-ups and the end-to-end technical process flow for the proposed Leadership Intelligence Platform. Submitted in support of the Malaysia Digital Status application, Section B: Proposed Activities.</p>
+    <div class="meta">
+      <span class="chip">Wireframes 01–06</span>
+      <span class="chip">Process flow</span>
+      <span class="chip">Indicative — pre-launch</span>
+    </div>
+  </div>
+  <div class="pfoot"><span>Leadership Launchpad Sdn. Bhd. · 202601028347 (1690442-H)</span><span>2026</span></div>
+</section>
+
+<!-- 2 JOURNEY -->
+<section class="page">
+  <div class="phead">
+    <p class="eyebrow">User journey</p>
+    <h2>End-to-end learner flow</h2>
+    <p class="note">Each stage of the journey is owned by a specialised agent. The orchestrator sequences the stages and carries learner state between them, so the loop compounds rather than restarting.</p>
+  </div>
+  <div class="pbody wide">
+    <svg class="dia" viewBox="0 0 1000 300" preserveAspectRatio="xMidYMid meet">
+      <defs><marker id="ar" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0 0 L7 3.5 L0 7Z" fill="#2E5C5B"/></marker></defs>
+      <g stroke="#2E5C5B" stroke-width="1.1" marker-end="url(#ar)" fill="none">
+        <path d="M150 78 H196"/><path d="M330 78 H376"/><path d="M510 78 H556"/><path d="M690 78 H736"/>
+        <path d="M816 104 V150 H500 V176"/>
+        <path d="M330 202 H240 V104"/>
+      </g>
+      <g>
+        <rect x="20" y="52" width="130" height="52" rx="3" fill="#0D141F" stroke="#1E2A3B"/>
+        <text x="85" y="74" text-anchor="middle" class="d-role" fill="#5FB3B0">Onboard</text>
+        <text x="85" y="90" text-anchor="middle" class="d-desc" fill="#8A97A8">role · context · goals</text>
+      </g>
+      <g>
+        <rect x="200" y="52" width="130" height="52" rx="3" fill="#0D141F" stroke="#1E2A3B"/>
+        <text x="265" y="74" text-anchor="middle" class="d-role" fill="#5FB3B0">Assess</text>
+        <text x="265" y="90" text-anchor="middle" class="d-desc" fill="#8A97A8">adaptive diagnostic</text>
+      </g>
+      <g>
+        <rect x="380" y="52" width="130" height="52" rx="3" fill="#0D141F" stroke="#1E2A3B"/>
+        <text x="445" y="74" text-anchor="middle" class="d-role" fill="#5FB3B0">Plan</text>
+        <text x="445" y="90" text-anchor="middle" class="d-desc" fill="#8A97A8">pathway generated</text>
+      </g>
+      <g>
+        <rect x="560" y="52" width="130" height="52" rx="3" fill="#0D141F" stroke="#1E2A3B"/>
+        <text x="625" y="74" text-anchor="middle" class="d-role" fill="#5FB3B0">Coach</text>
+        <text x="625" y="90" text-anchor="middle" class="d-desc" fill="#8A97A8">lessons · live coaching</text>
+      </g>
+      <g>
+        <rect x="740" y="52" width="152" height="52" rx="3" fill="#0D141F" stroke="#1E2A3B"/>
+        <text x="816" y="74" text-anchor="middle" class="d-role" fill="#5FB3B0">Rehearse</text>
+        <text x="816" y="90" text-anchor="middle" class="d-desc" fill="#8A97A8">scenario simulation</text>
+      </g>
+      <g>
+        <rect x="420" y="176" width="160" height="52" rx="3" fill="#101A27" stroke="#C89B4A"/>
+        <text x="500" y="198" text-anchor="middle" class="d-role" fill="#C89B4A">Evaluate</text>
+        <text x="500" y="214" text-anchor="middle" class="d-desc" fill="#8A97A8">rubric scoring · certify</text>
+      </g>
+      <g>
+        <rect x="200" y="176" width="130" height="52" rx="3" fill="#0D141F" stroke="#1E2A3B"/>
+        <text x="265" y="198" text-anchor="middle" class="d-role" fill="#5FB3B0">Re-sequence</text>
+        <text x="265" y="214" text-anchor="middle" class="d-desc" fill="#8A97A8">mastery updated</text>
+      </g>
+      <g>
+        <rect x="640" y="176" width="252" height="52" rx="3" fill="#0D141F" stroke="#1E2A3B" stroke-dasharray="3 3"/>
+        <text x="766" y="198" text-anchor="middle" class="d-role" fill="#8A97A8">Organisational analytics</text>
+        <text x="766" y="214" text-anchor="middle" class="d-desc" fill="#5E6B7C">anonymised · dashboards · benchmarking</text>
+      </g>
+      <path d="M580 202 H640" stroke="#2E5C5B" stroke-width="1.1" fill="none" marker-end="url(#ar)"/>
+      <text x="265" y="150" text-anchor="middle" class="d-note" fill="#5E6B7C">continuous loop — every interaction updates the learner model</text>
+    </svg>
+  </div>
+  <div class="pfoot"><span>User journey</span><span>02</span></div>
+</section>
+
+<!-- 3 LEARNER DASHBOARD -->
+<section class="page">
+  <div class="phead">
+    <p class="eyebrow">Wireframe 01</p>
+    <h2>Learner dashboard</h2>
+    <p class="note">The learner's home. Shows current competency standing, the generated development pathway, and the next recommended action.</p>
+  </div>
+  <div class="pbody">
+    <div class="screen">
+      <div class="chrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="url">app.leadership-launchpad.com/dashboard</span></div>
+      <div class="app">
+        <nav class="rail">
+          <div class="brand"><b>Leadership</b><i>Launchpad</i></div>
+          <a class="on">Dashboard</a><a>Assessment</a><a>Coach</a><a>Simulations</a><a>Reflections</a><a>Progress</a>
+          <div class="sp"></div>
+          <div class="who">Signed in<br>Regional Director</div>
+        </nav>
+        <div class="main">
+          <div class="topbar">
+            <div><div class="h">Good morning, Aisyah</div><div class="sub">Week 6 of your development pathway</div></div>
+            <span class="pill tealp">Mastery updated</span>
+          </div>
+          <div class="grid3">
+            <div class="card"><div class="lbl">Overall mastery</div><div class="val">62<small>%</small></div></div>
+            <div class="card"><div class="lbl">Sessions</div><div class="val">18</div></div>
+            <div class="card"><div class="lbl">Competencies certified</div><div class="val">3<small>/ 9</small></div></div>
+          </div>
+          <div class="card" style="flex:1;display:flex;flex-direction:column;gap:7px;">
+            <div class="lbl">Competency profile</div>
+            <div class="mrow"><div class="t"><span>Emotional regulation</span><span>78%</span></div><div class="meter"><i style="width:78%"></i></div></div>
+            <div class="mrow"><div class="t"><span>Decision quality under pressure</span><span>64%</span></div><div class="meter"><i style="width:64%"></i></div></div>
+            <div class="mrow"><div class="t"><span>Strategic foresight</span><span>41%</span></div><div class="meter g"><i style="width:41%"></i></div></div>
+            <div class="mrow"><div class="t"><span>Influence &amp; executive presence</span><span>55%</span></div><div class="meter"><i style="width:55%"></i></div></div>
+          </div>
+          <div class="card" style="display:flex;justify-content:space-between;align-items:center;gap:9px;">
+            <div><div class="lbl">Recommended next</div><div style="font-size:9.5px;margin-top:2px;">Scenario: delivering difficult feedback to a senior peer</div></div>
+            <span class="btn">Start</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <ol class="callouts">
+      <li><span class="n">1</span><span><b>Mastery score</b>Maintained by the knowledge-tracing model, updated after every interaction.</span></li>
+      <li><span class="n">2</span><span><b>Competency profile</b>Mapped to the Company's proprietary leadership frameworks, not a generic skills list.</span></li>
+      <li><span class="n">3</span><span><b>Recommended next action</b>Selected by the planner agent from the learner's current gap profile.</span></li>
+      <li><span class="n">4</span><span><b>Persistent context</b>The orchestrator carries prior sessions forward, so coaching never restarts cold.</span></li>
+    </ol>
+  </div>
+  <div class="pfoot"><span>Learner dashboard</span><span>03</span></div>
+</section>
+
+<!-- 4 ASSESSMENT -->
+<section class="page">
+  <div class="phead">
+    <p class="eyebrow">Wireframe 02</p>
+    <h2>Adaptive assessment</h2>
+    <p class="note">The assessor agent administers a branching diagnostic. Item difficulty and topic adjust in response to each answer, so the diagnostic converges on the learner's true level in fewer items than a fixed test.</p>
+  </div>
+  <div class="pbody">
+    <div class="screen">
+      <div class="chrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="url">app.leadership-launchpad.com/assessment</span></div>
+      <div class="app">
+        <nav class="rail">
+          <div class="brand"><b>Leadership</b><i>Launchpad</i></div>
+          <a>Dashboard</a><a class="on">Assessment</a><a>Coach</a><a>Simulations</a><a>Reflections</a><a>Progress</a>
+          <div class="sp"></div><div class="who">Signed in<br>Regional Director</div>
+        </nav>
+        <div class="main">
+          <div class="topbar">
+            <div><div class="h">Leadership intelligence diagnostic</div><div class="sub">Adaptive · item 7 of approximately 14</div></div>
+            <span class="pill tealp">Assessor agent</span>
+          </div>
+          <div class="meter" style="flex:none;"><i style="width:50%"></i></div>
+          <div class="card" style="flex:none;">
+            <div class="lbl">Scenario</div>
+            <div style="font-size:9.5px;margin-top:4px;line-height:1.55;">A direct report has missed a second deadline on a visible project. They have raised personal circumstances. Your executive sponsor has asked for an update this afternoon. What do you do first?</div>
+          </div>
+          <div class="stack" style="gap:6px;">
+            <div class="opt"><span class="rd"></span><span>Inform the sponsor of the slip before speaking to the report</span></div>
+            <div class="opt sel"><span class="rd"></span><span>Speak with the report to understand the cause, then update the sponsor</span></div>
+            <div class="opt"><span class="rd"></span><span>Reassign the deliverable to protect the timeline</span></div>
+            <div class="opt"><span class="rd"></span><span>Extend the deadline and inform the sponsor it is on track</span></div>
+          </div>
+          <div class="card" style="flex:none;">
+            <div class="lbl">Explain your reasoning</div>
+            <div class="stack" style="margin-top:5px;"><div class="sk w95"></div><div class="sk w80"></div><div class="sk w45"></div></div>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:9px;">
+            <span class="pill">Adjusting difficulty from your last response</span>
+            <span class="btn">Next item</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <ol class="callouts">
+      <li><span class="n">1</span><span><b>Branching logic</b>The next item is chosen from the response to this one — the test length is not fixed.</span></li>
+      <li><span class="n">2</span><span><b>Free-text reasoning</b>Captured for rubric scoring by the evaluator agent, not just the multiple-choice answer.</span></li>
+      <li><span class="n">3</span><span><b>Situational items</b>Drawn from the curated knowledge base of real leadership scenarios.</span></li>
+      <li><span class="n">4</span><span><b>Live model update</b>Each response updates the mastery estimate before the next item is served.</span></li>
+    </ol>
+  </div>
+  <div class="pfoot"><span>Adaptive assessment</span><span>04</span></div>
+</section>
+
+<!-- 5 COACHING -->
+<section class="page">
+  <div class="phead">
+    <p class="eyebrow">Wireframe 03</p>
+    <h2>AI coaching conversation</h2>
+    <p class="note">The tutor agent handles live coaching on situations the learner brings to it. Every response is grounded by retrieval over the proprietary knowledge base before generation.</p>
+  </div>
+  <div class="pbody">
+    <div class="screen">
+      <div class="chrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="url">app.leadership-launchpad.com/coach</span></div>
+      <div class="app">
+        <nav class="rail">
+          <div class="brand"><b>Leadership</b><i>Launchpad</i></div>
+          <a>Dashboard</a><a>Assessment</a><a class="on">Coach</a><a>Simulations</a><a>Reflections</a><a>Progress</a>
+          <div class="sp"></div><div class="who">Signed in<br>Regional Director</div>
+        </nav>
+        <div class="main">
+          <div class="topbar">
+            <div><div class="h">Your leadership coach</div><div class="sub">Session 19 · context carried from week 5</div></div>
+            <span class="pill tealp">Tutor agent</span>
+          </div>
+          <div class="chat">
+            <div class="msg ai"><span class="agent">Coach</span>Last week you set a goal around holding your position in the exco meeting. How did Tuesday go?</div>
+            <div class="msg me">I raised the resourcing issue but backed down when the CFO pushed. Same pattern as before.</div>
+            <div class="msg ai"><span class="agent">Coach</span>That is the third time this pattern has appeared in your reflections. Your diagnostic showed strong emotional regulation but lower conviction under senior challenge — the two are related. Shall we look at what you were feeling in the moment before we look at what you said?</div>
+            <div class="msg me">Yes. I think I anticipated being dismissed.</div>
+            <div class="msg ai"><span class="agent">Coach</span>Then the work is not the argument, it is the anticipation. I have added a rehearsal to your pathway: holding a position when challenged by a senior stakeholder.</div>
+          </div>
+          <div class="composer"><span class="ph">Type your message, or hold to speak…</span><span class="mic"></span><span class="btn">Send</span></div>
+        </div>
+      </div>
+    </div>
+    <ol class="callouts">
+      <li><span class="n">1</span><span><b>Persistent memory</b>The coach recalls prior sessions, goals and reflections across weeks.</span></li>
+      <li><span class="n">2</span><span><b>Pattern detection</b>Behavioural analytics surface recurring patterns the learner has not named themselves.</span></li>
+      <li><span class="n">3</span><span><b>Grounded response</b>Retrieval over the competency frameworks constrains the coaching to the Company's methodology.</span></li>
+      <li><span class="n">4</span><span><b>Writes back to the pathway</b>The tutor can hand off to the planner to insert a rehearsal.</span></li>
+      <li><span class="n">5</span><span><b>Voice input</b>Speech-to-text for spoken sessions.</span></li>
+    </ol>
+  </div>
+  <div class="pfoot"><span>AI coaching conversation</span><span>05</span></div>
+</section>
+
+<!-- 6 SIMULATION -->
+<section class="page">
+  <div class="phead">
+    <p class="eyebrow">Wireframe 04</p>
+    <h2>Scenario simulation and role-play</h2>
+    <p class="note">The simulator agent plays a counterpart in a realistic scenario. The learner rehearses aloud; the evaluator scores the exchange against rubrics in real time.</p>
+  </div>
+  <div class="pbody">
+    <div class="screen">
+      <div class="chrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="url">app.leadership-launchpad.com/simulations/difficult-feedback</span></div>
+      <div class="app">
+        <nav class="rail">
+          <div class="brand"><b>Leadership</b><i>Launchpad</i></div>
+          <a>Dashboard</a><a>Assessment</a><a>Coach</a><a class="on">Simulations</a><a>Reflections</a><a>Progress</a>
+          <div class="sp"></div><div class="who">Signed in<br>Regional Director</div>
+        </nav>
+        <div class="main">
+          <div class="topbar">
+            <div><div class="h">Holding your position under senior challenge</div><div class="sub">Counterpart: CFO · difficulty calibrated to your level</div></div>
+            <span class="pill tealp">Simulator agent</span>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 128px;gap:9px;flex:1;min-height:0;">
+            <div class="chat">
+              <div class="msg ai"><span class="agent">CFO — simulated</span>We have been over this. The headcount is not available this quarter. Why are we revisiting it?</div>
+              <div class="msg me">Because the delivery risk has changed since we last discussed it.</div>
+              <div class="msg ai"><span class="agent">CFO — simulated</span>Risk always changes. Give me a number, not a concern.</div>
+              <div class="composer" style="margin-top:auto;"><span class="ph">Hold to speak — you are being recorded for scoring</span><span class="mic"></span></div>
+            </div>
+            <div class="stack" style="gap:7px;">
+              <div class="card" style="padding:8px;">
+                <div class="lbl">Live scoring</div>
+                <div class="mrow" style="margin-top:6px;"><div class="t"><span>Clarity</span><span>72</span></div><div class="meter"><i style="width:72%"></i></div></div>
+                <div class="mrow" style="margin-top:5px;"><div class="t"><span>Conviction</span><span>48</span></div><div class="meter g"><i style="width:48%"></i></div></div>
+                <div class="mrow" style="margin-top:5px;"><div class="t"><span>Evidence use</span><span>61</span></div><div class="meter"><i style="width:61%"></i></div></div>
+              </div>
+              <div class="card" style="padding:8px;">
+                <div class="lbl">Nudge</div>
+                <div style="font-size:8px;margin-top:4px;line-height:1.5;color:var(--w-mut);">You conceded ground before presenting your evidence. Try leading with the number.</div>
+              </div>
+              <span class="pill goldp" style="text-align:center;">Evaluator agent active</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <ol class="callouts">
+      <li><span class="n">1</span><span><b>Calibrated counterpart</b>The simulated stakeholder's difficulty is set from the learner's current mastery.</span></li>
+      <li><span class="n">2</span><span><b>Spoken rehearsal</b>Speech-to-text in, text-to-speech out, so the practice matches the real setting.</span></li>
+      <li><span class="n">3</span><span><b>Real-time rubric scoring</b>The evaluator scores the exchange as it happens, not afterwards.</span></li>
+      <li><span class="n">4</span><span><b>In-session correction</b>Nudges are issued mid-scenario, which is where behaviour actually changes.</span></li>
+    </ol>
+  </div>
+  <div class="pfoot"><span>Scenario simulation</span><span>06</span></div>
+</section>
+
+<!-- 7 ADMIN -->
+<section class="page">
+  <div class="phead">
+    <p class="eyebrow">Wireframe 05</p>
+    <h2>Enterprise administrator console</h2>
+    <p class="note">The organisational view. Aggregated, anonymised capability data across cohorts, supporting talent management and succession planning — the layer no individual coaching engagement can produce.</p>
+  </div>
+  <div class="pbody">
+    <div class="screen">
+      <div class="chrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="url">admin.leadership-launchpad.com/capability</span></div>
+      <div class="app">
+        <nav class="rail">
+          <div class="brand"><b>Leadership</b><i>Launchpad</i></div>
+          <a class="on">Capability</a><a>Cohorts</a><a>Pathways</a><a>Benchmarks</a><a>Reports</a><a>Settings</a>
+          <div class="sp"></div><div class="who">Admin<br>Group HR</div>
+        </nav>
+        <div class="main">
+          <div class="topbar">
+            <div><div class="h">Leadership capability — Group</div><div class="sub">248 leaders · 6 cohorts · Q4 2026</div></div>
+            <span class="pill">Anonymised</span>
+          </div>
+          <div class="grid3">
+            <div class="card"><div class="lbl">Avg. mastery</div><div class="val">58<small>%</small></div></div>
+            <div class="card"><div class="lbl">Active learners</div><div class="val">201</div></div>
+            <div class="card"><div class="lbl">Certified competencies</div><div class="val">412</div></div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;flex:1;min-height:0;">
+            <div class="card" style="display:flex;flex-direction:column;">
+              <div class="lbl">Mastery growth by quarter</div>
+              <div class="bars" style="margin-top:auto;"><div style="height:38%"></div><div style="height:47%"></div><div style="height:55%"></div><div style="height:62%"></div><div style="height:71%"></div><div style="height:80%"></div></div>
+              <div class="axis"><span>Q1</span><span>Q2</span><span>Q3</span><span>Q4</span><span>Q1</span><span>Q2</span></div>
+            </div>
+            <div class="card">
+              <div class="lbl">Team competency map</div>
+              <div class="heat" style="margin-top:7px;">
+                <div class="hd"></div><div class="hd">EI</div><div class="hd">Dec</div><div class="hd">Fore</div><div class="hd">Infl</div><div class="hd">Comm</div><div class="hd">Exec</div>
+                <div class="rw">Ops</div><div class="c" style="background:#2E8280"></div><div class="c" style="background:#69AFAD"></div><div class="c" style="background:#B7D6D5"></div><div class="c" style="background:#69AFAD"></div><div class="c" style="background:#2E8280"></div><div class="c" style="background:#E3B96F"></div>
+                <div class="rw">Finance</div><div class="c" style="background:#69AFAD"></div><div class="c" style="background:#2E8280"></div><div class="c" style="background:#E3B96F"></div><div class="c" style="background:#B7D6D5"></div><div class="c" style="background:#69AFAD"></div><div class="c" style="background:#B7D6D5"></div>
+                <div class="rw">Tech</div><div class="c" style="background:#B7D6D5"></div><div class="c" style="background:#69AFAD"></div><div class="c" style="background:#2E8280"></div><div class="c" style="background:#E3B96F"></div><div class="c" style="background:#B7D6D5"></div><div class="c" style="background:#69AFAD"></div>
+                <div class="rw">Sales</div><div class="c" style="background:#69AFAD"></div><div class="c" style="background:#B7D6D5"></div><div class="c" style="background:#69AFAD"></div><div class="c" style="background:#2E8280"></div><div class="c" style="background:#2E8280"></div><div class="c" style="background:#B7D6D5"></div>
+              </div>
+              <div style="display:flex;gap:9px;margin-top:9px;font-size:7px;color:var(--w-dim);font-family:var(--mono);">
+                <span>■ Strong</span><span>■ Developing</span><span style="color:#B98A33">■ Gap</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <ol class="callouts">
+      <li><span class="n">1</span><span><b>Aggregated and anonymised</b>Individual coaching content is never exposed to administrators.</span></li>
+      <li><span class="n">2</span><span><b>Team competency mapping</b>Capability gaps visible by function, which is what drives succession decisions.</span></li>
+      <li><span class="n">3</span><span><b>Longitudinal growth</b>Measured movement over time, not attendance or completion.</span></li>
+      <li><span class="n">4</span><span><b>Benchmarking</b>Anonymised cross-client comparison — a data asset that compounds with platform usage.</span></li>
+    </ol>
+  </div>
+  <div class="pfoot"><span>Administrator console</span><span>07</span></div>
+</section>
+
+<!-- 8 PROCESS FLOW -->
+<section class="page">
+  <div class="phead">
+    <p class="eyebrow sys">Wireframe 06 · Advanced technology</p>
+    <h2>End-to-end technical process flow</h2>
+    <p class="note">How a single learner interaction is processed. Named tools shown at each stage. Open-source and self-hosted components run on the Company's own infrastructure in the AWS Asia Pacific (Malaysia) Region.</p>
+  </div>
+  <div class="pbody wide">
+    <svg class="dia" viewBox="0 0 1000 330" preserveAspectRatio="xMidYMid meet">
+      <defs><marker id="a2" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0 0 L7 3.5 L0 7Z" fill="#2E5C5B"/></marker></defs>
+      <g stroke="#2E5C5B" stroke-width="1.1" fill="none" marker-end="url(#a2)">
+        <path d="M132 52 H176"/>
+        <path d="M254 78 V112"/>
+        <path d="M332 138 H376"/>
+        <path d="M454 112 V78"/><path d="M532 52 H576"/>
+        <path d="M654 78 V112"/>
+        <path d="M732 138 H776"/>
+        <path d="M854 164 V208"/>
+        <path d="M776 234 H600"/>
+        <path d="M520 234 H346"/>
+        <path d="M254 208 V164"/>
+      </g>
+
+      <g><rect x="16" y="26" width="116" height="52" rx="3" fill="#0D141F" stroke="#1E2A3B"/>
+        <text x="74" y="46" text-anchor="middle" class="d-role" fill="#F5F1E6">Frontend</text>
+        <text x="74" y="61" text-anchor="middle" class="d-desc" fill="#8A97A8">React · Next.js</text>
+        <text x="74" y="72" text-anchor="middle" class="d-desc" fill="#5E6B7C">text or voice input</text></g>
+
+      <g><rect x="180" y="26" width="148" height="52" rx="3" fill="#0D141F" stroke="#1E2A3B"/>
+        <text x="254" y="46" text-anchor="middle" class="d-role" fill="#F5F1E6">API layer</text>
+        <text x="254" y="61" text-anchor="middle" class="d-desc" fill="#8A97A8">Python · FastAPI</text>
+        <text x="254" y="72" text-anchor="middle" class="d-desc" fill="#5E6B7C">Keycloak auth</text></g>
+
+      <g><rect x="180" y="112" width="148" height="52" rx="3" fill="#0D141F" stroke="#1E2A3B"/>
+        <text x="254" y="132" text-anchor="middle" class="d-role" fill="#5FB3B0">Speech-to-text</text>
+        <text x="254" y="147" text-anchor="middle" class="d-desc" fill="#8A97A8">Whisper (self-hosted)</text>
+        <text x="254" y="158" text-anchor="middle" class="d-desc" fill="#5E6B7C">faster-whisper</text></g>
+
+      <g><rect x="380" y="112" width="148" height="52" rx="3" fill="#101A27" stroke="#C89B4A"/>
+        <text x="454" y="132" text-anchor="middle" class="d-role" fill="#C89B4A">Orchestrator</text>
+        <text x="454" y="147" text-anchor="middle" class="d-desc" fill="#8A97A8">LangGraph</text>
+        <text x="454" y="158" text-anchor="middle" class="d-desc" fill="#5E6B7C">routes to agent · state</text></g>
+
+      <g><rect x="580" y="26" width="148" height="52" rx="3" fill="#0D141F" stroke="#1E2A3B"/>
+        <text x="654" y="46" text-anchor="middle" class="d-role" fill="#5FB3B0">Retrieval — RAG</text>
+        <text x="654" y="61" text-anchor="middle" class="d-desc" fill="#8A97A8">LlamaIndex · pgvector</text>
+        <text x="654" y="72" text-anchor="middle" class="d-desc" fill="#5E6B7C">BGE-M3 embeddings</text></g>
+
+      <g><rect x="580" y="112" width="148" height="52" rx="3" fill="#0D141F" stroke="#1E2A3B"/>
+        <text x="654" y="132" text-anchor="middle" class="d-role" fill="#5FB3B0">Generation — LLM</text>
+        <text x="654" y="147" text-anchor="middle" class="d-desc" fill="#8A97A8">Llama 3.3 · Mistral (vLLM)</text>
+        <text x="654" y="158" text-anchor="middle" class="d-desc" fill="#5E6B7C">GPT / Claude selectively</text></g>
+
+      <g><rect x="780" y="112" width="152" height="52" rx="3" fill="#0D141F" stroke="#1E2A3B"/>
+        <text x="856" y="132" text-anchor="middle" class="d-role" fill="#5FB3B0">Evaluation — NLP</text>
+        <text x="856" y="147" text-anchor="middle" class="d-desc" fill="#8A97A8">Transformers · spaCy</text>
+        <text x="856" y="158" text-anchor="middle" class="d-desc" fill="#5E6B7C">rubric scoring</text></g>
+
+      <g><rect x="780" y="208" width="152" height="52" rx="3" fill="#0D141F" stroke="#1E2A3B"/>
+        <text x="856" y="228" text-anchor="middle" class="d-role" fill="#5FB3B0">Knowledge tracing</text>
+        <text x="856" y="243" text-anchor="middle" class="d-desc" fill="#8A97A8">PyTorch · scikit-learn</text>
+        <text x="856" y="254" text-anchor="middle" class="d-desc" fill="#5E6B7C">mastery updated</text></g>
+
+      <g><rect x="524" y="208" width="152" height="52" rx="3" fill="#0D141F" stroke="#1E2A3B"/>
+        <text x="600" y="228" text-anchor="middle" class="d-role" fill="#5FB3B0">Analytics pipeline</text>
+        <text x="600" y="243" text-anchor="middle" class="d-desc" fill="#8A97A8">dbt Core · Metabase</text>
+        <text x="600" y="254" text-anchor="middle" class="d-desc" fill="#5E6B7C">dashboards · benchmarks</text></g>
+
+      <g><rect x="180" y="208" width="166" height="52" rx="3" fill="#0D141F" stroke="#1E2A3B"/>
+        <text x="263" y="228" text-anchor="middle" class="d-role" fill="#5FB3B0">Response to learner</text>
+        <text x="263" y="243" text-anchor="middle" class="d-desc" fill="#8A97A8">Piper text-to-speech</text>
+        <text x="263" y="254" text-anchor="middle" class="d-desc" fill="#5E6B7C">pathway re-sequenced</text></g>
+
+      <g><rect x="16" y="286" width="916" height="34" rx="3" fill="#0B121C" stroke="#1E2A3B" stroke-dasharray="3 3"/>
+        <text x="34" y="307" class="d-note" fill="#5E6B7C">PLATFORM SERVICES &nbsp;·&nbsp; AWS Asia Pacific (Malaysia) Region &nbsp;·&nbsp; Docker + Kubernetes (EKS) &nbsp;·&nbsp; PostgreSQL + Redis &nbsp;·&nbsp; Amazon S3 &nbsp;·&nbsp; GitHub Actions CI/CD &nbsp;·&nbsp; Langfuse + Prometheus + Grafana observability &nbsp;·&nbsp; Stripe billing &nbsp;·&nbsp; encryption in transit and at rest, PDPA-aligned</text></g>
+    </svg>
+  </div>
+  <div class="pfoot"><span>Technical process flow</span><span>08</span></div>
+</section>
+
+</body>
+</html>
